@@ -1,0 +1,18 @@
+<ul>
+  <% @favorites.each do |contact| %>
+    ***********************************
+    <a href=<%="/show/#{contact.id}"%>><li>Name: <%= contact.name %></li>
+    <li>Address: <%= contact.address %></li>
+    <li>Phone number: <%= contact.phone_number %></li>
+    <li>E-mail: <%= contact.email %></li></a>
+    <li>Favorite:
+      <% if contact.favorites == true %>
+        <!-- <%= contact.favorites %> -->
+        yes
+      <% else %>
+        no
+      <% end %>
+    </li>
+  <% end %>
+  ***********************************
+</ul>

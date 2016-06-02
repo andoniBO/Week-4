@@ -1,0 +1,11 @@
+<ul>
+  <% @projects.each do |project| %>
+    <li><%= project.name %>
+      <% if project.description.present? && project.name.present? %>
+           -
+      <% end %>
+      <%= project.description %>
+    </li>
+  <% end %>
+</ul>
+<a href="/projects/new">AÑADIR NUEVO PROYECTO</a>

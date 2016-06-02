@@ -1,0 +1,36 @@
+<section class="holder">
+  <div class="row top">
+  </div>
+  <div class="row content">
+    <section class="col-sm-2 sidebar">
+      <h1>Coming soon</h1>
+
+      <ul>
+        <% @concerts.each do |concert| %>
+          <a href= <%= "/concerts/#{concert.id}" %>>
+            <li>
+              <p><%= concert.artist %> -
+                <%= concert.date.strftime('%v') %></p>
+            </li>
+          </a>
+        <% end %>
+      </ul>
+    </section>
+
+    <div class="col-sm-10 main">
+      <h1>Today's concerts</h1>
+
+      <ul>
+        <% @today_concerts.each do |concert| %>
+          <a href= <%= "/concerts/#{concert.id}" %>>
+            <li>
+              <p>Artist: <%= concert.artist %> -
+                City: <%= concert.city %> -
+                Date: <%= concert.date.strftime('%v') %></p>
+            </li>
+          </a>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</section>

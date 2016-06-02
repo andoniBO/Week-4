@@ -1,0 +1,16 @@
+<h1><%= @project.name %></h1>
+
+<ul>
+  <% @time_entries.each do |time_entry| %>
+    <li>
+      <div><%= "Hours: #{time_entry.hours}. "\
+               "Minutes: #{time_entry.minutes}" %>
+      </div>
+      <div>
+        <%= "#{time_entry.comment}" %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Projects", "/projects" %>

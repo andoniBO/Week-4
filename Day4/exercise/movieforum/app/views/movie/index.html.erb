@@ -1,0 +1,12 @@
+
+<a href="/movies/search">Search Movie</a>
+<ul>
+  <% @movies.each do |m| %>
+    <li>
+      <p>Title: <%= m.title %></p>
+      <img src="<%= m.poster %>" alt="<%= m.poster %>" />
+      <p>Year: <%= m.year %></p>
+      <p>Synopsis: <%= m.synopsis %></p>
+    </li>
+  <% end %>
+</ul>

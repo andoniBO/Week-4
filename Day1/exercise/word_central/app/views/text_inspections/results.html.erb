@@ -1,0 +1,19 @@
+<!-- app/views/site/results.html.erb -->
+
+<h1>Word Central</h1>
+
+<p>Inspection's results:</p>
+
+<ul>
+  <li>Original sentence: <%= @text %></li>
+  <li>Number of words: <%= @word_count %></li>
+  <li>Estimated reading time (seconds): <%= @estimated_reading_time %></li>
+</ul>
+
+<p>Most popular words:</p>
+
+<ul>
+<% @ten_words.each {|item| %><li><%= item[0].to_s %>: <%= item[1] %></li><% } %>
+</ul>
+
+<a href="/">TRY AGAIN</a>

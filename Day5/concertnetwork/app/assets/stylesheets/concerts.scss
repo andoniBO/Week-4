@@ -1,0 +1,42 @@
+// Place all the styles related to the concerts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.holder{
+  height: 100vh;
+}
+
+.top{
+  height: 50px;
+}
+
+.row{
+}
+
+.content{
+  height: 100%;
+}
+
+.sidebar{
+  background-color: red;
+  color: white;
+  margin-left: -15px;
+  height: 100%;
+  ul{
+    align-self: left;
+    padding-left: 5px;
+    li{
+      color: white;
+      list-style-type: none;
+      padding: 10px;
+      margin: 5px 4px 2px 0px;
+    }
+  }
+  a:hover{
+    color: white;
+  }
+}
+
+.main{
+
+}

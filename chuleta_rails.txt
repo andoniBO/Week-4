@@ -1,0 +1,103 @@
+gemas:
+	gem 'rspec-rails'
+	gem 'factorygirl' - mas testing, buena para modelos con relaciones
+	gem 'coverage'
+	gem 'better_errors'
+	gem 'awesome_print'
+	gem 'rails-erd'
+		requiere instalacion de graphviz
+	gem 'quiet_assets'
+	las del ruby sadist(heckel tambien recomendada por jacobo)
+
+webs:
+	ruby toolbox
+
+iniciar proyecto rails:
+-rails new <nombre del proyecto>
+-rake db:create
+-git init
+-git add .
+-git commit -m "Added initial Rails structure"
+
+base de datos:
+rake db:create - crear
+rake db:migrate - ejecutar las migraciones
+rake db:seed - poblar la base de datos
+rake db:drop - destruir la base de datos
+
+generar controlador:
+-rails g controller <nombre del controlador> (singular)
+
+generar modelo:
+-rails g model <nombre del modelo> (singular)
+
+uri '/' => accion/vista 'index'
+
+action/vista '/new' => muestra formulario para submit
+accion/vista '/create' => cuando submitean formulario deberia llevarles a create, pero la uri en routes sera igual que index
+
+accion/vista '/index' => muestra listado
+accion/vista '/show' => mostrar un registro
+
+crear formulario en base a una variable:
+	declarar la variable en el controlador:
+	@my_projects
+	escribir esta sintaxis en la vista:
+	<%= form_for @my_project do |f| %>
+	  <%= f.label :name %>
+	  <%= f.text_field :name %>
+	  <%= f.button %>
+	<% end %>
+
+si hay elementos anidados el identificador de los padres sera <nombre del padre>_id, ej:
+	get '/projects/:id' => 'projects#show'
+	get '/projects/:project_id/time_entries' => 'time_entries#index'
+
+crear un alias(en este caso seria root):
+	get '/' => 'site#home', as "root"
+
+ver las routes:
+	en consola: rake routes
+	en navegador: http://localhost:3000/rails/info/routes
+
+validaciones:
+	standard:
+		opcion 1:
+  			validates :hours, :minutes, :date, presence: true
+		opcion 2:
+  			validates :hours, :minutes, :date, presence: {message: "No puede estar en blanco"}
+	personalizadas:
+  		def minimum_length
+    			if name.present? && size < 3
+      				errors[:name] << "Longitud invalida"
+    			end
+  		end
+
+eliminar registros:
+.destroy - destruye el registro sobre el que se ejecuta
+destroy(<id>) - destruye el registro con la id en el parentesis
+.destroy_all - destruye todos los registros
+
+link_to:
+sintaxis:
+<% link_to "<texto que aparecerá por pantalla>", "URI" %>
+-siempre sera GET por defecto
+-Ejemplo de DELETE en un link_to:
+    <%= link_to "Delete", "/projects/#{@project.id}/time_entries/#{time_entry.id}", method: :delete, data: {confirm: "Are you sure?"} %>
+
+metodo para limpiar los params:
+  private - para convertirlo en privado
+
+  def entry_params
+    params.require(<key del params>).permit(<campos del hash que hay en la key, o sea, mas keys>)
+    ejemplo: params.require(:time_entry).permit(:hours, :minutes, :comment, :date)
+  end
+
+partials:
+fragmentos de codigo de html que se pueden reutilizar
+para determinar que es un partial hay que añadirle "_" al comienzo del nombre (ejemplo: _form)
+como llamar a un partial en una vista:
+	<%= render "<nombre sin _" %>
+	ejemplo: <%= render "form" %>
+los partials se pueden guardar en una carpeta, para acceder solo hay que añadir la carpeta donde esta antes del nombre, ejemplo:
+	<%= render "/partials/errors", record: @time_entry %>

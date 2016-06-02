@@ -1,0 +1,32 @@
+<a href="/contacts/new">New contact</a>
+<p>
+
+</p>
+<form class="" action="/search" method="post">
+  <input type="text" name="search" value="" placeholder="Search...">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <button type="submit">Search</button>
+</form>
+
+<ul>
+  <% @contacts.each do |contact| %>
+    ***********************************
+    <a href=<%="/show/#{contact.id}"%>><li>Name: <%= contact.name %></li>
+    <li>Address: <%= contact.address %></li>
+    <li>Phone number: <%= contact.phone_number %></li>
+    <li>E-mail: <%= contact.email %></li></a>
+    <li>Favorite:
+      <% if contact.favorites == true %>
+        <!-- <%= contact.favorites %> -->
+        yes
+      <% else %>
+        no
+      <% end %>
+    </li>
+    <form action=<%= "/favorites/#{contact.id}" %> method="POST">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <li><button type="submit">Add to favorites</button></li>
+    </form>
+  <% end %>
+  ***********************************
+</ul>
